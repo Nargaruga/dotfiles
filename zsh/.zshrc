@@ -48,4 +48,4 @@ bindkey '^[[3~' delete-char # Del
 # Aliases
 alias vim=nvim
 alias ls='ls --color=auto'
-
+alias nnn='nnn -Aa'
