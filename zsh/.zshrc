@@ -48,4 +48,8 @@ bindkey '^[[3~' delete-char # Del
 # Aliases
 alias vim=nvim
 alias ls='ls --color=auto'
-alias nnn='nnn -Aa'
+alias nnn='nnn -A'
+
+# nnn file manager plugins
+export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_PLUG='p:preview-tui'
