@@ -4,6 +4,21 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+#
+# Colors
+# 
+set $bg #472d30
+set $fg #ffe1a8
+set $br #723d46
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $br     $br     $fg     $bg       $br
+client.focused_inactive $bg     $bg     $fg     $bg       $bg
+client.unfocused        $bg     $bg     $fg     $bg       $bg
+#client.urgent          $br     $br     $fg     $bg       $br #currently not implemented
+#client.placeholder     $br     $br     $fg     $bg       $br #currently not implemented
+client.background $bg
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -23,7 +38,8 @@ set $menu fuzzel | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/leo/Pictures/wallpapers/alena-aenami-quiet.jpg fill
+output * bg /home/leo/Pictures/wallpapers/palette.png fill
+
 #
 # Example configuration:
 #
@@ -62,8 +78,20 @@ font pango:Hack Nerd Font Medium 11
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+
+#
+# Touchpad configuration
+#
 input type:touchpad {
     tap enabled
+}
+
+#
+# Keyboard Layouts
+#
+input type:keyboard {
+    xkb_layout us,it
+    xkb_options grp:win_space_toggle
 }
 
 ### Key bindings
@@ -209,12 +237,24 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #
-# Volume control:
+# Volume control
 #
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+#
+# Brightness control
+#
+bindsym XF86MonBrightnessUp exec brightnessctl s +5%
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
+
+#
+# Screenshots
+#
+bindsym Mod4+p       exec grimshot save area
+bindsym Mod4+Shift+p exec grimshot copy area
 
 #
 # Status Bar:
