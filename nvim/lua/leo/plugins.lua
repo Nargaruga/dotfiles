@@ -51,11 +51,17 @@ local plugins = {
         opts = {}
     },
 
+    -- Container developement
+    'jamestthompson3/nvim-remote-containers',
+
     -- Better undo
     'mbbill/undotree',
 
     -- Autoclose parentheses
     'm4xshen/autoclose.nvim',
+
+    -- Autoclose tags
+    'windwp/nvim-ts-autotag',
 
     -- Comment toggle
     'numToStr/Comment.nvim',

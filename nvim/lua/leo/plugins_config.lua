@@ -79,3 +79,11 @@ require("nvim-tree").setup({
 
 -- Nvim web-devicons
 require("nvim-web-devicons").setup()
+
+-- Autotags
+require'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,
+  }
+}
+
