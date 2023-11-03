@@ -28,12 +28,24 @@ set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term kitty
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu fuzzel | xargs swaymsg exec --
+
+#
+# Notifications
+#
+exec mako
+
+#
+# Authorization
+#
+exec --no-startup-id /usr/lib/polkit-dumb-agent/polkit-dumb-agent-responder
 
 ### Output configuration
 #
@@ -93,6 +105,12 @@ input type:keyboard {
     xkb_layout us,it
     xkb_options grp:win_space_toggle
 }
+
+#
+# Screen lock
+#
+set $lock 'swaylock -r'
+bindswitch --reload --locked lid:on exec $lock
 
 ### Key bindings
 #
