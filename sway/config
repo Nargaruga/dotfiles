@@ -271,8 +271,8 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 #
 # Screenshots
 #
-bindsym Mod4+p       exec grimshot save area
-bindsym Mod4+Shift+p exec grimshot copy area
+bindsym $mod+p       exec flameshot gui
+bindsym Print        exec flameshot full
 
 #
 # Status Bar:
