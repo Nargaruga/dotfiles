@@ -1,4 +1,4 @@
--- Plugin configuration
+--- Plugin configuration ---
 
 -- Telescope
 local builtin = require("telescope.builtin")
@@ -49,6 +49,17 @@ cmp.setup({
     }
 })
 
+require("lspconfig").lua_ls.setup {
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { 'vim' },
+            },
+        },
+    },
+}
+
 -- Autoclose
 require("autoclose").setup()
 
@@ -81,9 +92,8 @@ require("nvim-tree").setup({
 require("nvim-web-devicons").setup()
 
 -- Autotags
-require'nvim-treesitter.configs'.setup {
-  autotag = {
-    enable = true,
-  }
+require 'nvim-treesitter.configs'.setup {
+    autotag = {
+        enable = true,
+    }
 }
-
