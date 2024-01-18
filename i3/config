@@ -176,7 +176,7 @@ bindsym $mod+r mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+q kill
@@ -186,7 +186,7 @@ bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
 
 # Lock the system
 # lock with a picture:
-bindsym $mod+l exec i3lock --image /home/leo/Pictures/wallpapers/alena-aenami-lights1k1.png
+bindsym $mod+l exec i3lock --image /home/leo/Pictures/wallpapers/alena-aenami-lights.png
 # lock by blurring the screen:
 #bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
 
@@ -241,7 +241,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+g layout tabbed
+bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -266,8 +266,10 @@ bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMI
 bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
 bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
 
-# mute
-bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+# mute audio
+bindsym XF86AudioMute exec amixer sset Master toggle && pkill -RTMIN+1 i3blocks
+# mute microphone
+bindsym XF86AudioMicMute exec amixer sset Capture toggle && pkill -RTMIN+1 i3blocks
 
 # audio control
 bindsym XF86AudioPlay exec playerctl play
@@ -276,11 +278,9 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Redirect sound to headphones
-bindsym $mod+p exec /usr/local/bin/switch-audio-port
+bindsym $mod+Shift+p exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
-#bindsym $mod+w exec /usr/bin/firefox
-#bindsym $mod+n exec /usr/bin/thunar
 bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 # Flameshot
 bindsym Shift+Print exec flameshot gui
@@ -305,11 +305,16 @@ set $ws10 "10"
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
-#workspace $ws1 output VGA-0
-#workspace $ws2 output VGA-0
-#workspace $ws3 output HDMI-0
-#workspace $ws4 output HDMI-0
-#workspace $ws5 output HDMI-0
+workspace $ws1 output primary
+workspace $ws2 output primary
+workspace $ws3 output primary 
+workspace $ws4 output primary
+workspace $ws5 output primary
+workspace $ws6 output primary
+workspace $ws7 output primary
+workspace $ws8 output primary 
+workspace $ws9 output HDMI-2
+workspace $ws10 output HDMI-2 
 
 # bind program to workspace and focus to them on startup:
 #assign [class="Xfce4-terminal"] $ws1
@@ -554,15 +559,19 @@ bar {
 # Rofi shortcuts #
 ##################
 
+# Window switcher
+bindsym $mod+g exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi
+
+
 # Power Profiles menu switcher
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
+bindsym $mod+p exec ~/.config/i3/scripts/power-profiles
 
 # Calculator
-bindsym $mod+Shift+m exec rofi -show calc -no-show-match -no-sort \
+bindsym $mod+c exec rofi -show calc -no-show-match -no-sort \
         -config ~/.config/rofi/rofidmenu.rasi
 
 # Wi-Fi selector
-bindsym $mod+Shift+n exec rofi-wifi-menu \
+bindsym $mod+n exec rofi-wifi-menu \
 		~/.config/rofi/rofidmenu.rasi
 
 ## rofi bindings fancy application menu ($mod+d /F9 optional disabled)
